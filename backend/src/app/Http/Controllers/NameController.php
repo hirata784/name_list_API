@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Name;
 use Illuminate\Http\Request;
 
 class NameController extends Controller
@@ -13,9 +14,11 @@ class NameController extends Controller
      */
     public function index()
     {
+        // 全データ取得
+        $names = Name::all();
         return response()->json([
-            'data' => ['太郎', '次郎']
-        ]);
+            'data' => $names
+        ], 200);
     }
 
     /**
@@ -27,8 +30,9 @@ class NameController extends Controller
     public function store(Request $request)
     {
         // データを追加
+        $name = Name::create($request->all());
         return response()->json([
-            'name' => $request->input('name')
+            'data' => Name::all()
         ], 201);
     }
 }

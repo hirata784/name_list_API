@@ -4,7 +4,7 @@
   </div>
   <ul>
     <li v-for="(n, index) in names" :key="index">
-      {{ n }}
+      {{ n.name }}
     </li>
   </ul>
   <div>
@@ -19,8 +19,8 @@ const names = ref([])
 const addName = ref('')
 
 // 初期読み込み
-const { data } = await useFetch('http://localhost/api/names')
-names.value = data.value.data
+  const { data } = await useFetch('http://localhost/api/names')
+  names.value = data.value.data
 
 // 追加
 async function add() {
@@ -31,8 +31,7 @@ async function add() {
     }
   }
   )
-
-  names.value.push(res.name)
-    addName.value = ''
+  names.value = res.data
+  addName.value = ''
 }
 </script>
