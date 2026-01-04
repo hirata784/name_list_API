@@ -2,5 +2,10 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  pages: true
+  pages: true,
+  app: {
+    head: {
+      title: '名前リスト'
+    }
+  }
 })
